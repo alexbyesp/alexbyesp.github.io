@@ -1,0 +1,27 @@
+User: tai.commerce.store@gmail.com
+Password: gyymsexe2021
+Date: 24 - 10 - 2000
+
+Host: db4free.net
+DB: tai_commerce
+DB Username: tai_admin
+DB Password: gyymsexe2021
+
+* Base de Datos
+* Mapas
+* Web
+* Tester
+
+Gris:		Programadora Web
+Xime:		Programadora Web
+Mimi:		Mapas
+Yahir:		Programador Web * Tester
+Santi:		Programador Web * Tester
+Cris: 		Programador Web *
+Emanuel: 	Admin. Base de Datos * Programador Web
+Alejandro:	Programador Web. IA
+
+Funcionalidades:
+Adminstrador - Aceptar a los Artesanos, Aprobar todo* ,IA encargada de analizar todo el sitio
+Artesano - Productos
+Cliente - Comprar
