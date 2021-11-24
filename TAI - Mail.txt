@@ -7,21 +7,31 @@ DB: tai_commerce
 DB Username: tai_admin
 DB Password: gyymsexe2021
 
-* Base de Datos
-* Mapas
-* Web
-* Tester
+Adminstrador: 	Aceptar a los Artesanos	*1
+		Crear Categorias
+		Aceptar Productos
 
-Gris:		Programadora Web
-Xime:		Programadora Web
-Mimi:		Mapas
-Yahir:		Programador Web * Tester
-Santi:		Programador Web * Tester
-Cris: 		Programador Web *
-Emanuel: 	Admin. Base de Datos * Programador Web
-Alejandro:	Programador Web. IA
+Artesanos:	Registrase
+		Iniciar Sesión 		*1
+		Actualizar Datos Personales
+		Registrar Producto
+		Actualizar Producto (Actualizar Estatus)
+		Visualizar Ventas	=	Mensajería
 
-Funcionalidades:
-Adminstrador - Aceptar a los Artesanos, Aprobar todo* ,IA encargada de analizar todo el sitio
-Artesano - Productos
-Cliente - Comprar
+Cliente:		Registrarse
+		Iniciar Sesión
+		Actualizar Datos Personales
+		Hacer Pedidos
+		Hacer Opiniones * SOLO SI HA COMPRADO ESE PRODUCTO
+		Mensajería * DEPENDE DEL PRODUCTO QUE SE HA COMPRADO
+
+Formato de archivos PHP:
+Nombre de la tabla (3 letras) + accion .php
+
+art_insert.php
+art_update.php
+art_delete.php*
+
+prod_insert.php
+prod_update.php
+prod_delete.php*
