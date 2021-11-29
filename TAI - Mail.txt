@@ -28,6 +28,8 @@ Cliente:		Registrarse
 Formato de archivos PHP:
 Nombre de la tabla (3 letras) + accion .php
 
+Servidor (Backend):
+
 art_insert.php
 art_update.php
 art_delete.php*
@@ -35,3 +37,13 @@ art_delete.php*
 prod_insert.php
 prod_update.php
 prod_delete.php*
+
+Frontend:
+
+art_home.php
+art_prod_insert.php
+
+Formato de Inicio:
+
+Nombre de la Página seguido de Descripción
+Nombre del Programador
