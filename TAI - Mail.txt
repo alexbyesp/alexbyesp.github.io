@@ -16,12 +16,14 @@ Artesanos:	Registrase
 Cliente:		Registrarse
 		Iniciar Sesión
 		Actualizar Datos Personales
+		Crear tantas direcciones de envio
 		Hacer Pedidos
 		Hacer Opiniones * SOLO SI HA COMPRADO ESE PRODUCTO
 		Mensajería * DEPENDE DEL PRODUCTO QUE SE HA COMPRADO
 
 Formato de archivos PHP:
-Nombre de la tabla (3 letras) + accion .php
+
+Nombre de la tabla (3 letras o mas letras) + accion .php
 
 Servidor (Backend):
 
@@ -42,3 +44,20 @@ Formato de Inicio:
 
 Nombre de la Página seguido de Descripción
 Nombre del Programador
+
+Asignación de Módulos*:
+
+Administrador: Alejandro
+Artesano: *Cristian
+Cliente: * Emanuel
+Direcciones del Cliente: * Emanuel
+Categorías de Productos: * Ximena
+Producto (Con imágenes): * Cristian
+Materiales de Productos:  * Gris
+Carrito: * Yahir
+Venta: * Yahir
+Opiniones: * Ximena
+Mensajes: * Gris
+
+Prototipos: Santiago
+Diseño y Documento: Mimi
