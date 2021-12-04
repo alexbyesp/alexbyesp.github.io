@@ -1,0 +1,2 @@
+#Error 404 Archino encontrado
+ErrorDocument 404 /404.php

@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+    <link rel="icon" type="image/png" href="img/resources/ICONO-TAI.png">
     <title>Panel de Control: Mi Perfil</title>
 </head>
 
@@ -41,7 +42,21 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['admin_nombre']; ?></span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                                <?php 
+                                    #Cargar Imágen de Perfil del Administrador
+                                    include 'sql_query_php/connect_bd.php';
+                                    $consulta = mysqli_query($conexion, "SELECT admin_img FROM tai_admin WHERE admin_id = '" . $_SESSION['admin_id'] . "'");
+                                    $row_datos = mysqli_fetch_assoc($consulta);
+                                    if($row_datos['admin_img'] == ''){
+                                        ?>
+                                            <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                                        <?php
+                                    }else{
+                                        ?>
+                                            <img class="img-profile rounded-circle" src="<?php echo substr($row_datos['admin_img'],3) ?>">
+                                        <?php
+                                    }
+                                ?>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -50,7 +65,7 @@
                                     Mi Perfil
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="sql_query_php/admin_logout.php" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="sql_query_php/admin_logout.php">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Salir
                                 </a>
@@ -76,7 +91,7 @@
                     $consulta = mysqli_query($conexion, "SELECT * FROM tai_admin WHERE admin_id = '" . $_SESSION['admin_id'] . "'");
                     $row_datos = mysqli_fetch_assoc($consulta);
                     ?>
-                    <form action="sql_query_php/admin_update.php" method="POST">
+                    <form action="sql_query_php/admin_update.php" method="POST" enctype="multipart/form-data">
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputEmail4">Nombre:</label>

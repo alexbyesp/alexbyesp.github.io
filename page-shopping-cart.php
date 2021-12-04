@@ -122,7 +122,7 @@ $(document).ready(function() {
 
 <?php
         $sql="SELECT tai_producto.producto_nombre, tai_carrito.carrito_cantidad, tai_producto.producto_precio FROM 
-        tai_producto, tai_carrito WHERE tai_producto.producto_id = tai_carrito.carrito_prod_id AND tai_carrito.carrito_cliente_id = 1";
+        tai_producto, tai_carrito WHERE tai_producto.producto_id = tai_carrito.carrito_prod_id AND tai_carrito.carrito_cliente_id = 2";
         $result=mysqli_query($conexion,$sql);
 
         while($mostrar=mysqli_fetch_assoc($result)){
