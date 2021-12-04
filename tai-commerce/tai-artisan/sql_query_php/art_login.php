@@ -11,6 +11,7 @@
         echo'<script type="text/javascript">alert("¡USUARIO O CONTRASEÑA INCORRECTA!");window.location.href="../index.php";</script>';
     } else {
         $row_usuario = mysqli_fetch_assoc($login);
+        $_SESSION['artesano_id'] = $row_usuario['artesano_id'];
         $_SESSION['artesano_nombre'] = $row_usuario['artesano_nombre'];
         header('location: ../art_home.php');
     }

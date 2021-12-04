@@ -55,7 +55,7 @@
                                     Mi Perfil
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="sql_query_php/art_logout.php">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Salir
                                 </a>
@@ -74,84 +74,88 @@
                     <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Bienvenid@ <?php echo $_SESSION['artesano_nombre']; ?></h1>
-                    <p class="mb-4">Mantén tus datos actualizados para que los usuarios puedan encontrarte.</p>
+                    <h1 class="h3 mb-2 text-gray-800">Mis Ventas</h1>
+                    <p class="mb-4">Lleva el control de tus ventas, fechas y envíos.</p>
 
-                    <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Foto de perfil</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <!--incluir apartado de foto de perfil aqui-->
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Datos personales</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Datos de orden</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>ID Orden</th>
+                                            <th>Producto</th>
+                                            <th>Cliente</th>
+                                            <th>Cantidad</th>
+                                            <th>Fecha y Hora</th>
+                                            <th>Dirección de envió</th>
+                                            <th>Total</th>
+                                            <th></th>
+                                        </tr>
+                                        <?php
+                                        include 'sql_query_php/connec_bd.php';
+                                        $consulta = mysqli_query($conexion, "SELECT * FROM tai_venta_productos WHERE venta_prod_id IN (SELECT producto_id FROM tai_producto WHERE producto_artesano_id = '" . $_SESSION['artesano_id'] . "')");
+
+                                        while ($mostrar = mysqli_fetch_array($consulta)){        
+                                        ?>
+                                    </thead>
+                                        <?php
+                                            $consulta2 = mysqli_query($conexion, "SELECT producto_nombre FROM tai_producto WHERE producto_id = '" . $mostrar['venta_prod_id'] . "'");
+                                            $row_datos = mysqli_fetch_assoc($consulta2);
+                                        ?>
+                                        <?php
+                                            $consulta3 = mysqli_query($conexion, "SELECT cliente_nombre FROM tai_cliente WHERE cliente_id = (SELECT orden_cli_id FROM tai_venta_orden WHERE orden_id = '" . $mostrar['venta_prod_orden_id'] . "')");
+                                            $row_datos2 = mysqli_fetch_assoc($consulta3);
+                                        ?>
+                                        <?php
+                                            $consulta4 = mysqli_query($conexion, "SELECT direc_cli_calle FROM tai_cliente_direc WHERE direc_cli_id = (SELECT orden_cli_dir_id FROM tai_venta_orden WHERE orden_id = '" . $mostrar['venta_prod_orden_id'] . "')");
+                                            $row_datos3 = mysqli_fetch_assoc($consulta4);
+                                        ?>
+                                        <?php
+                                            $consulta5 = mysqli_query($conexion, "SELECT colonia_nombre FROM dir_colonias WHERE colonia_id = (SELECT direc_cli_colonia FROM tai_cliente_direc WHERE direc_cli_id = (SELECT orden_cli_dir_id FROM tai_venta_orden WHERE orden_id = '" . $mostrar['venta_prod_orden_id'] . "'))");
+                                            $row_datos4 = mysqli_fetch_assoc($consulta5);
+                                        ?>
+                                        <?php
+                                            $consulta6 = mysqli_query($conexion, "SELECT municipio_nombre FROM dir_municipios WHERE municipio_id = (SELECT colonia_muni_id FROM dir_colonias WHERE colonia_id = (SELECT direc_cli_colonia FROM tai_cliente_direc WHERE direc_cli_id = (SELECT orden_cli_dir_id FROM tai_venta_orden WHERE orden_id = '" . $mostrar['venta_prod_orden_id'] . "')))");
+                                            $row_datos5 = mysqli_fetch_assoc($consulta6);
+                                        ?>
+                                        <?php
+                                            $consulta7 = mysqli_query($conexion, "SELECT estado_nombre FROM dir_estados WHERE estado_id = (SELECT municipio_estado_id FROM dir_municipios WHERE municipio_id = (SELECT colonia_muni_id FROM dir_colonias WHERE colonia_id = (SELECT direc_cli_colonia FROM tai_cliente_direc WHERE direc_cli_id = (SELECT orden_cli_id FROM tai_venta_orden WHERE orden_id = '" . $mostrar['venta_prod_orden_id'] . "'))))");
+                                            $row_datos6 = mysqli_fetch_assoc($consulta7);
+                                        ?>
+                                        <?php
+                                            $consulta8 = mysqli_query($conexion, "SELECT orden_total FROM tai_venta_orden WHERE orden_id = '" . $mostrar['venta_prod_orden_id'] . "'");
+                                            $row_datos7 = mysqli_fetch_assoc($consulta8);
+                                        ?>
+                                        <?php
+                                            $consulta9 = mysqli_query($conexion, "SELECT orden_fecha FROM tai_venta_orden WHERE orden_id = '" . $mostrar['venta_prod_orden_id'] . "'");
+                                            $row_datos8 = mysqli_fetch_assoc($consulta9);
+                                        ?>
                                     <tbody>
                                         <tr>
-                                            <td>Nombre</td>
-                                            <td><input type="text" class="form-control form-control-user" name="artesano_nombre"
-                                            value="<?php echo $_SESSION['artesano_nombre']; ?>"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Apellidos</td>
-                                            <td><input type="text" class="form-control form-control-user" name="artesano_apellidos"
-                                            value="<?php echo $_SESSION['artesano_nombre']; ?>"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Teléfono</td>
-                                            <td><input type="text" class="form-control form-control-user" name="artesano_nombre"
-                                            value="<?php echo $_SESSION['artesano_nombre']; ?>"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Correo Electrónico</td>
-                                            <td><input type="text" class="form-control form-control-user" name="artesano_nombre"
-                                            value="<?php echo $_SESSION['artesano_nombre']; ?>"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Calle</td>
-                                            <td><input type="text" class="form-control form-control-user" name="artesano_nombre"
-                                            value="<?php echo $_SESSION['artesano_nombre']; ?>"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Numero exterior</td>
-                                            <td><input type="text" class="form-control form-control-user" name="artesano_nombre"
-                                            value="<?php echo $_SESSION['artesano_nombre']; ?>"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Numero interiro</td>
-                                            <td><input type="text" class="form-control form-control-user" name="artesano_nombre"
-                                            value="<?php echo $_SESSION['artesano_nombre']; ?>"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Colonia</td>
-                                            <td><input type="text" class="form-control form-control-user" name="artesano_nombre"
-                                            value="<?php echo $_SESSION['artesano_nombre']; ?>"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Municipio</td>
-                                            <td><input type="text" class="form-control form-control-user" name="artesano_nombre"
-                                            value="<?php echo $_SESSION['artesano_nombre']; ?>"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Estado</td>
-                                            <td><input type="text" class="form-control form-control-user" name="artesano_nombre"
-                                            value="<?php echo $_SESSION['artesano_nombre']; ?>"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Referencias</td>
-                                            <td><input type="text" class="form-control form-control-user" name="artesano_nombre"
-                                            value="<?php echo $_SESSION['artesano_nombre']; ?>"></td>
+                                            <td><?php echo $mostrar['venta_prod_orden_id'] ?></td>
+                                            <td><?php echo $row_datos['producto_nombre'] ?></td>
+                                            <td><?php echo $row_datos2['cliente_nombre'] ?></td>
+                                            <td><?php echo $mostrar['venta_prod_cantidad'] ?></td>
+                                            <td><?php echo $row_datos8['orden_fecha'] ?></td>
+                                            <td><?php echo $row_datos3['direc_cli_calle'] ?>, <?php echo $row_datos4['colonia_nombre'] ?>, <?php echo $row_datos5['municipio_nombre'] ?>, <?php echo $row_datos6['estado_nombre'] ?></td>
+                                            <td><?php echo $row_datos7['orden_total'] ?></td>
+                                            <td>
+                                                <a href="#" class="btn btn-success btn-icon-split">
+                                                    <span class="icon text-white-50">
+                                                    <i class="fas fa-envelope"></i>
+                                                    </span>
+                                                    <span class="text">Mensajes</span>
+                                                </a>
+                                            </td>
                                         </tr>
                                     </tbody>
+                                    <?php 
+                                        }
+                                    ?>
                                 </table>
                             </div>
                         </div>

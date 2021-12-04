@@ -2,7 +2,7 @@
     $servidor = "localhost";
     $usuario = "root";
     $contrasena = "";
-    $bd = "tai_ecommerce";
+    $bd = "tai_test";
     $conexion = mysqli_connect($servidor,$usuario,$contrasena,$bd);
     if($conexion){
         #echo "Conexión Establecida Correctamente";
