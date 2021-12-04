@@ -45,20 +45,20 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['admin_nombre']; ?></span>
-                                <?php 
-                                    #Cargar Imágen de Perfil del Administrador
-                                    include 'sql_query_php/connect_bd.php';
-                                    $consulta = mysqli_query($conexion, "SELECT admin_img FROM tai_admin WHERE admin_id = '" . $_SESSION['admin_id'] . "'");
-                                    $row_datos = mysqli_fetch_assoc($consulta);
-                                    if($row_datos['admin_img'] == ''){
-                                        ?>
-                                            <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
-                                        <?php
-                                    }else{
-                                        ?>
-                                            <img class="img-profile rounded-circle" src="<?php echo substr($row_datos['admin_img'],3) ?>">
-                                        <?php
-                                    }
+                                <?php
+                                #Cargar Imágen de Perfil del Administrador
+                                include 'sql_query_php/connect_bd.php';
+                                $consulta = mysqli_query($conexion, "SELECT admin_img FROM tai_admin WHERE admin_id = '" . $_SESSION['admin_id'] . "'");
+                                $row_datos = mysqli_fetch_assoc($consulta);
+                                if ($row_datos['admin_img'] == '') {
+                                ?>
+                                    <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                                <?php
+                                } else {
+                                ?>
+                                    <img class="img-profile rounded-circle" src="<?php echo substr($row_datos['admin_img'], 3) ?>">
+                                <?php
+                                }
                                 ?>
                             </a>
                             <!-- Dropdown - User Information -->
@@ -86,12 +86,12 @@
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Artesanos</h1>
                     <p class="mb-4">La siguiente tabla permite observar los artesanos registrados y cambiar su <b>Estatus</b>. <br>
-                            <ul>
-                                <li>En Revisión: <i>El artesano está en espera de la aprobación de su cuenta</i>. </li>
-                                <li>Activo: <i>La cuenta del artesano está activa</i>. </li>
-                                <li>Penalizado: <i>La cuenta del artesano se encuentra suspendida por haber incumplido alguna regla</i>. </li>
-                                <li>Inactivo: <i style="color: red;">El artesano está dado de baja</i>. </li>
-                            </ul>
+                    <ul>
+                        <li>En Revisión: <i>El artesano está en espera de la aprobación de su cuenta</i>. </li>
+                        <li>Activo: <i>La cuenta del artesano está activa</i>. </li>
+                        <li>Penalizado: <i>La cuenta del artesano se encuentra suspendida por haber incumplido alguna regla</i>. </li>
+                        <li>Inactivo: <i style="color: red;">El artesano está dado de baja</i>. </li>
+                    </ul>
                     </p>
 
                     <!-- DataTales Example -->
@@ -110,6 +110,7 @@
                                             <th>Teléfono</th>
                                             <th>Correo Electrónico</th>
                                             <th>Estatus</th>
+                                            <th>Editar</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -120,6 +121,7 @@
                                             <th>Teléfono</th>
                                             <th>Correo Electrónico</th>
                                             <th>Estatus</th>
+                                            <th>Editar</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -134,12 +136,28 @@
                                                 <td> <?php echo $row[2]; ?> </td>
                                                 <td> <?php echo $row[3]; ?> </td>
                                                 <td> <?php echo $row[4]; ?> </td>
-                                                <td> <select name="" class="custom-select">
-                                                        <option value="0" <?php if ($row[12] == '0'){ echo 'selected'; }?>>En Revisión</option>
-                                                        <option value="1" <?php if ($row[12] == '1'){ echo 'selected'; }?>>Activo</option>
-                                                        <option value="2" <?php if ($row[12] == '2'){ echo 'selected'; }?>>Penalizado</option>
-                                                        <option value="3" <?php if ($row[12] == '3'){ echo 'selected'; }?>>Inactivo</option>
-                                                    </select> </td>
+                                                <?php
+                                                        if ($row[12] == 0) {
+                                                            echo "<td style='color:blue'>En revisión</td>";
+                                                        } else if ($row[12] == 1) {
+                                                            echo "<td style='color:green'>Activo</td>";
+                                                        } else if ($row[12] == 2) {
+                                                            echo "<td style='color:orange'>Penalizado</td>";
+                                                        } else {
+                                                            echo "<td style='color:red'>Inactivo</td>";
+                                                        }
+                                                        ?>
+                                                <td align="center">
+                                                    <form action="admin_artesano_info.php" method="POST">
+                                                        <input type="hidden" name="artesano_id" value="<?php echo $row[0]; ?>">
+                                                        <button type="submit" class="btn btn-info btn-icon-split">
+                                                            <span class="icon text-white-50">
+                                                                <i class="fas fa-info-circle"></i>
+                                                            </span>
+                                                            <span class="text">Administrar</span>
+                                                        </button>
+                                                    </form>
+                                                </td>
                                             </tr><?php
                                                 }
                                                     ?>

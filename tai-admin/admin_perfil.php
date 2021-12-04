@@ -128,8 +128,8 @@
                                 <input type="file" class="form-control-file" name="admin_img">
                             </div>
                         </div>
-                        <div align="center">
-                            <br><button type="submit" class="btn btn-warning btn-icon-split">
+                        <div align="center"><br>
+                            <button type="submit" class="btn btn-warning btn-icon-split">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-exclamation-triangle"></i>
                                 </span>
