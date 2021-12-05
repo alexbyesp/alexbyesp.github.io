@@ -6,7 +6,7 @@
 <html lang="es">
 
 <head>
-    <title>Panel de Control: Registrar productos</title>
+    <title>Panel de Control: Actualizar Productos</title>
     <link href="css/art_info_home.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -72,50 +72,57 @@
 
                     <!--=======================================================================================-->
                     <div class="container-fluid">
-                    
-                        <!-- Page Heading -->
-                        <h1 class="h3 mb-2 text-gray-800">Registro de productos</h1>
-                        <p class="mb-4">Registre un nuevo producto y extienda su variedad para aumentar su popularidad en el mercado.</p>
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Actualiza tus productos</h1>
+                    <p class="mb-4">Administra tus productos para ofrecer una mejor experiencia a tus clientes.</p>
                         <?php
                             include("sql_query_php/errores.php");
                         ?>
                         <?php
                             include 'sql_query_php/connec_bd.php';
-                            $consulta = mysqli_query($conexion, "SELECT * FROM tai_artesano WHERE artesano_id = '" . $_SESSION['artesano_id'] . "'");
+                            $producto_id = $_POST['producto_id'];
+                            $consulta = mysqli_query($conexion, "SELECT * FROM tai_producto WHERE producto_id = '$producto_id'");
                             $row_datos = mysqli_fetch_assoc($consulta);
                         ?>
                         <?php
-                            $consulta2 = mysqli_query($conexion, "SELECT colonia_nombre FROM dir_colonias WHERE colonia_id = '" . $row_datos['artesano_dir_colonia'] . "'");
+                            $consulta2 = mysqli_query($conexion, "SELECT categoria_nombre FROM tai_prod_categoria WHERE categoria_id  = '" . $row_datos['producto_categoria_id'] . "'");
                             $row_datos2 = mysqli_fetch_assoc($consulta2);
                         ?>
                         <?php
-                            $consulta3 = mysqli_query($conexion, "SELECT municipio_nombre FROM dir_municipios WHERE municipio_id = (SELECT colonia_muni_id FROM dir_colonias WHERE colonia_id = '" . $row_datos['artesano_dir_colonia'] . "')");
+                            $consulta3 = mysqli_query($conexion, "SELECT material_nombre FROM tai_prod_materiales WHERE material_id  = (SELECT rel_mat_id FROM tai_prod_mat_rel WHERE rel_prod_id = '$producto_id')");
                             $row_datos3 = mysqli_fetch_assoc($consulta3);
                         ?>
                         <?php
-                            $consulta4 = mysqli_query($conexion, "SELECT estado_nombre FROM dir_estados WHERE estado_id = (SELECT municipio_estado_id FROM dir_municipios WHERE municipio_id = (SELECT colonia_muni_id FROM dir_colonias WHERE colonia_id = '" . $row_datos['artesano_dir_colonia'] . "'))");
+                            $consulta4 = mysqli_query($conexion, "SELECT img_nombre FROM tai_prod_images WHERE img_producto_id  = '$producto_id'");
                             $row_datos4 = mysqli_fetch_assoc($consulta4);
                         ?>
-                        <form action="sql_query_php/art_prod_register.php" method="POST">
+                        <form action="sql_query_php/art_producto_update.php" method="POST">
+                        <label for="inputEmail4">ID producto</label>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <input name="producto_nombre" type="text" class="form-control" placeholder="Nombre del producto">
+                                    <input name="producto_id" type="text" class="form-control" value="<?php echo $row_datos['producto_id'];?>" placeholder="Nombre del producto" readonly>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <input name="producto_nombre" type="text" class="form-control" value="<?php echo $row_datos['producto_nombre'];?>" placeholder="Nombre del producto">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input name="producto_precio" type="text" class="form-control" placeholder="Precio del producto">
+                                    <input name="producto_precio" type="text" class="form-control" value="<?php echo $row_datos['producto_precio'];?>" placeholder="Precio del producto">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input name="producto_SKU" type="text" class="form-control" placeholder="Código de producto">
+                                    <input name="producto_SKU" type="text" class="form-control" value="<?php echo $row_datos['producto_SKU'];?>" placeholder="Código de producto">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <textarea name="producto_descrip" type="text" class="form-control" placeholder="Descripción del producto"></textarea>
+                                    <textarea name="producto_descrip" type="text" class="form-control" placeholder="Descripción del producto"><?php echo $row_datos['producto_descrip'];?></textarea>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input name="producto_stock" type="text" class="form-control" placeholder="Cantidad en inventario">
+                                    <input name="producto_stock" type="text" class="form-control" value="<?php echo $row_datos['producto_stock'];?>" placeholder="Cantidad en inventario">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <select name="categoria_nombre" class="form-control">
-                                        <option>Categoría del producto</option>
+                                        <option><?php echo $row_datos2['categoria_nombre'];?></option>
                                         <?php
                                         include 'sql_query_php/connec_bd.php';
                                         $consulta = mysqli_query($conexion, "SELECT categoria_nombre FROM tai_prod_categoria");
@@ -130,7 +137,7 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <select name="material_nombre" class="form-control">
-                                        <option>Material del producto</option>
+                                        <option><?php echo $row_datos3['material_nombre'];?></option>
                                         <?php
                                         $consulta = mysqli_query($conexion, "SELECT material_nombre FROM tai_prod_materiales");
 
@@ -144,20 +151,24 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputEmail4">Seleccione la imagen principal de su producto</label>
+                                    <div class="col-md-3 col-lg-3 " align="center"> 
+										<div id="load_img">
+											<img class="img-responsive" src="img/<?php echo $row_datos4['img_nombre'];?>" alt="Foto de perfil" style="border-radius:150px;">
+										</div>
+									</div>
                                     <input type="file" class="form-control-file" name="img_nombre">
                                 </div>
                             </div>
                             <div align="center">
-                                <br><button type="submit" class="btn btn-success btn-icon-split">
+                                <br><button type="submit" class="btn btn-warning btn-icon-split">
                                     <span class="icon text-white-50">
-                                        <i class="fas fa-upload"></i>
+                                        <i class="fas fa-exclamation-triangle"></i>
                                     </span>
-                                    <span class="text">Registrar producto</span>
+                                    <span class="text">Actualizar producto</span>
                                 </button>
                             </div>
                         </form>
-
-                    </div>
+                </div>
                     <!--========================================================================================-->
                 </div>
                 <!-- /.container-fluid -->
