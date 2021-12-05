@@ -5,6 +5,7 @@ Date: 24 - 10 - 2000
 Adminstrador: 	Aceptar a los Artesanos	*1
 		Crear Categorias
 		Aceptar Productos
+		Crear Materiales
 
 Artesanos:	Registrase
 		Iniciar Sesión 		*1
