@@ -45,20 +45,20 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['admin_nombre']; ?></span>
-                                <?php 
-                                    #Cargar Imágen de Perfil del Administrador
-                                    include 'sql_query_php/connect_bd.php';
-                                    $consulta = mysqli_query($conexion, "SELECT admin_img FROM tai_admin WHERE admin_id = '" . $_SESSION['admin_id'] . "'");
-                                    $row_datos = mysqli_fetch_assoc($consulta);
-                                    if($row_datos['admin_img'] == ''){
-                                        ?>
-                                            <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
-                                        <?php
-                                    }else{
-                                        ?>
-                                            <img class="img-profile rounded-circle" src="<?php echo substr($row_datos['admin_img'],3) ?>">
-                                        <?php
-                                    }
+                                <?php
+                                #Cargar Imágen de Perfil del Administrador
+                                include 'sql_query_php/connect_bd.php';
+                                $consulta = mysqli_query($conexion, "SELECT admin_img FROM tai_admin WHERE admin_id = '" . $_SESSION['admin_id'] . "'");
+                                $row_datos = mysqli_fetch_assoc($consulta);
+                                if ($row_datos['admin_img'] == '') {
+                                ?>
+                                    <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                                <?php
+                                } else {
+                                ?>
+                                    <img class="img-profile rounded-circle" src="<?php echo substr($row_datos['admin_img'], 3) ?>">
+                                <?php
+                                }
                                 ?>
                             </a>
                             <!-- Dropdown - User Information -->
@@ -85,11 +85,17 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Productos</h1>
-                    <p class="mb-4">La siguiente tabla permite observar los productos registrados y la posibilidad de cambiar su <i>Estatus. <br>
-                            <br>0) En Revisión<br>1) Activo<br>2) Pausado<br>3) Descontinuado
-                        </i>
-                    </p>
-
+                    <p class="mb-4">La siguiente tabla permite observar los productos registrados y cambiar su <b>Estatus</b>. <br>
+                    <ul>
+                        <li>En Revisión: <i>El producto está en espera de ser aprobado para ponerse en venta</i>. </li>
+                        <li>Activo: <i>El producto se encuentra a la venta</i>. </li>
+                        <li>Pausado: <i>El producto no tiene inventario pero aún se producirán más de él</i>. </li>
+                        <li>Descontinuado: <i style="color: red;">El producto ya no se venderá ni producirá más</i>. </li>
+                    </ul>
+                    </p> <br>
+                    <?php
+                        include("sql_query_php/errores.php");
+                    ?>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -97,25 +103,23 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>Nombre</th>
                                             <th>Precio</th>
-                                            <th>SKU</th>
-                                            <th>Descripción</th>
                                             <th>Artesano</th>
                                             <th>Estatus</th>
+                                            <th>Editar</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th>Nombre</th>
                                             <th>Precio</th>
-                                            <th>SKU</th>
-                                            <th>Descripción</th>
                                             <th>Artesano</th>
                                             <th>Estatus</th>
+                                            <th>Editar</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -126,15 +130,34 @@
                                         while ($row = mysqli_fetch_array($consulta)) {
                                         ?><tr>
                                                 <td> <?php echo $row[1]; ?> </td>
-                                                <td> $ <?php echo $row[2]; ?> </td>
-                                                <td> <?php echo $row[3]; ?> </td>
-                                                <td> <?php echo $row[4]; ?> </td>
+                                                <td> $ <?php echo $row[2]; ?> MXN</td>
                                                 <td> <?php 
                                                     $consulta_artesano = mysqli_query($conexion, "SELECT * FROM tai_artesano WHERE artesano_id = '$row[7]'");
                                                     $row_artesano = mysqli_fetch_assoc($consulta_artesano);
                                                     echo $row_artesano['artesano_nombre'], " ", $row_artesano['artesano_apellidos'];
                                                 ?> </td>
-                                                <td> <?php echo $row[6]; ?> </td>
+                                                <?php
+                                                        if ($row[6] == 0) {
+                                                            echo "<td style='color:blue'>En revisión</td>";
+                                                        } else if ($row[6] == 1) {
+                                                            echo "<td style='color:green'>Activo</td>";
+                                                        } else if ($row[6] == 2) {
+                                                            echo "<td style='color:orange'>Pausado</td>";
+                                                        } else {
+                                                            echo "<td style='color:red'>Descontinuado</td>";
+                                                        }
+                                                        ?>
+                                                <td align="center">
+                                                    <form action="admin_producto_info.php" method="POST">
+                                                        <input type="hidden" name="producto_id" value="<?php echo $row[0]; ?>">
+                                                        <button type="submit" class="btn btn-info btn-icon-split">
+                                                            <span class="icon text-white-50">
+                                                                <i class="fas fa-info-circle"></i>
+                                                            </span>
+                                                            <span class="text">Administrar</span>
+                                                        </button>
+                                                    </form>
+                                                </td>
                                             </tr><?php
                                                 }
                                                     ?>

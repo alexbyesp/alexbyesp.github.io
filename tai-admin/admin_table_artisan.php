@@ -92,8 +92,10 @@
                         <li>Penalizado: <i>La cuenta del artesano se encuentra suspendida por haber incumplido alguna regla</i>. </li>
                         <li>Inactivo: <i style="color: red;">El artesano está dado de baja</i>. </li>
                     </ul>
-                    </p>
-
+                    </p> <br>
+                    <?php
+                        include("sql_query_php/errores.php");
+                    ?>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -101,6 +103,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
+                            
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>

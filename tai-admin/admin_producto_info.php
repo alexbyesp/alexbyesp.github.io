@@ -3,7 +3,7 @@
 
 <head>
     <link rel="icon" type="image/png" href="img/resources/ICONO-TAI.png">
-    <title>Panel de Control: Información del Artesano</title>
+    <title>Panel de Control: Información del Producto</title>
 </head>
 
 <body id="page-top">
@@ -82,45 +82,53 @@
 
 
                     <?php
-                    $artesano_id = $_POST['artesano_id'];
+                    $producto_id = $_POST['producto_id'];
                     include 'sql_query_php/connect_bd.php';
-                    $consulta = mysqli_query($conexion, "SELECT * FROM tai_artesano WHERE artesano_id = '" . $artesano_id . "'");
+                    $consulta = mysqli_query($conexion, "SELECT * FROM tai_producto WHERE producto_id = '" . $producto_id . "'");
                     $row_datos = mysqli_fetch_assoc($consulta);
                     ?>
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Artesano: <?php echo $row_datos['artesano_nombre'], " ", $row_datos['artesano_apellidos']; ?></h1>
+                    <h1 class="h3 mb-4 text-gray-800">Producto: <?php echo $row_datos['producto_nombre']; ?></h1>
                     <p>
-                        <b>Nombre del Artesano:</b> <?php echo $row_datos['artesano_nombre'], " ", $row_datos['artesano_apellidos']; ?> <br>
-                        <b>Teléfono:</b> <?php echo $row_datos['artesano_telefono']; ?> <br>
-                        <b>Correo Electrónico:</b> <?php echo $row_datos['artesano_email']; ?> <br>
-                        <b>Domicilio:</b> <?php echo $row_datos['artesano_dir_calle'], ", Ext. ", $row_datos['artesano_dir_numext'], ", Int. ", $row_datos['artesano_dir_numint'], ", ";
-                                    $colonia = mysqli_query($conexion, "SELECT * FROM dir_colonias WHERE colonia_id = '" . $row_datos['artesano_dir_colonia'] . "'");
-                                    $row_colonia = mysqli_fetch_assoc($colonia);
-                                    echo "Col. ", $row_colonia['colonia_nombre'], ", C.P. ", $row_colonia['colonia_cp'], ", ";
-                                    $municipio = mysqli_query($conexion, "SELECT * FROM dir_municipios WHERE municipio_id = '" . $row_colonia['colonia_muni_id'] . "'");
-                                    $row_municipio = mysqli_fetch_assoc($municipio);
-                                    echo $row_municipio['municipio_nombre'], ", ";
-                                    $estado = mysqli_query($conexion, "SELECT * FROM dir_estados WHERE estado_id = '" . $row_municipio['municipio_estado_id'] . "'");
-                                    $row_estado = mysqli_fetch_assoc($estado);
-                                    echo $row_estado['estado_nombre'], ", México.";
-                                    ?> <br>
-                        <b>Referencia de Dirección:</b> <?php echo $row_datos['artesano_dir_ref']; ?>
-                    <form action="sql_query_php/admin_artesano_update.php" method="POST">
-                        <input type="hidden" name="artesano_id" value="<?php echo $artesano_id; ?>">
+                        <b>Nombre del Producto:</b> <?php echo $row_datos['producto_nombre']; ?> <br>
+                        <b>Precio:</b> $ <?php echo $row_datos['producto_precio']; ?> MXN<br>
+                        <b>SKU (Número/Código de referencia):</b> <?php echo $row_datos['producto_SKU']; ?> <br>
+                        <b>Descripción:</b> <?php echo $row_datos['producto_descrip']; ?> <br>
+                        <b>Stock:</b> <?php echo $row_datos['producto_stock']; ?> <br>
+                        <b>Estatus:</b> <?php
+                                        if ($row_datos['producto_estatus'] == 0) {
+                                            echo "En revisión";
+                                        } else if ($row_datos['producto_estatus'] == 1) {
+                                            echo "Activo";
+                                        } else if ($row_datos['producto_estatus'] == 2) {
+                                            echo "Pausado";
+                                        } else {
+                                            echo "Descontinuado";
+                                        }
+                                        ?> <br>
+                        <b>Artesano:</b> <?php
+                                            $consulta_artesano = mysqli_query($conexion, "SELECT * FROM tai_artesano WHERE artesano_id = '" . $row_datos['producto_artesano_id'] . "'");
+                                            $row_artesano = mysqli_fetch_assoc($consulta_artesano);
+                                            echo $row_artesano['artesano_nombre'], " ", $row_artesano['artesano_apellidos'];
+                                            ?> <br>
+                        <b>Categoría:</b> <?php
+                                            $consulta_categoria = mysqli_query($conexion, "SELECT * FROM tai_prod_categoria WHERE categoria_id = '" . $row_datos['producto_categoria_id'] . "'");
+                                            $row_categoria = mysqli_fetch_assoc($consulta_categoria);
+                                            echo $row_categoria['categoria_nombre'];
+                                            ?> <br>
+                        <?php
+                        if ($row_datos['producto_estatus'] == '0') {
+                        ?>
+                    <form action="sql_query_php/admin_producto_update.php" method="POST">
+                        <input type="hidden" name="producto_id" value="<?php echo $producto_id; ?>">
+
                         <b>Estatus:</b>
-                        <select class="custom-select" name="artesano_estatus" required>
-                            <option value="">Selecciona el Estatus del Artesano</option>
-                            <option value="1" <?php if ($row_datos['artesano_estatus'] == '1') {
-                                                    echo 'selected';
-                                                } ?> style="color: green;" >Activo</option>
-                            <option value="2" <?php if ($row_datos['artesano_estatus'] == '2') {
-                                                    echo 'selected';
-                                                } ?> style="color: orange;" >Penalizado</option>
-                            <option value="3" <?php if ($row_datos['artesano_estatus'] == '3') {
-                                                    echo 'selected';
-                                                } ?> style="color: red;" >Inactivo</option>
+                        <select class="custom-select" name="producto_estatus" required>
+                            <option value="">Selecciona el Estatus del Producto</option>
+                            <option value="1" style="color: green;">Activo</option>
                         </select>
+
                         <div align="center"><br>
                             <button type="submit" class="btn btn-warning btn-icon-split">
                                 <span class="icon text-white-50">
@@ -130,7 +138,10 @@
                             </button>
                         </div>
                     </form>
-                    </p>
+                        <?php
+                        }
+                        ?>
+                </p>
                 </div>
                 <!-- /.container-fluid -->
 
