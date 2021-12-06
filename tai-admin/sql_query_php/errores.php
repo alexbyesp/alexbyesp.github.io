@@ -59,10 +59,10 @@
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            <h4 class="alert-heading">Error!</h4>
+            <h4 class="alert-heading">¡ Error !</h4>
             <p>Se produjo un error al ELIMINAR sus datos.</p>
             <hr>
-            <p class="mb-0">Esto puede que se deba a que otros registros dependan de este registro.</p>
+            <p class="mb-0">Esto se puede deber a que otros registros dependan de este dato.</p>
         </div>
     <?php
     } 
