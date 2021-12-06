@@ -42,20 +42,20 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['admin_nombre']; ?></span>
-                                <?php 
-                                    #Cargar Imágen de Perfil del Administrador
-                                    include 'sql_query_php/connect_bd.php';
-                                    $consulta = mysqli_query($conexion, "SELECT admin_img FROM tai_admin WHERE admin_id = '" . $_SESSION['admin_id'] . "'");
-                                    $row_datos = mysqli_fetch_assoc($consulta);
-                                    if($row_datos['admin_img'] == ''){
-                                        ?>
-                                            <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
-                                        <?php
-                                    }else{
-                                        ?>
-                                            <img class="img-profile rounded-circle" src="<?php echo substr($row_datos['admin_img'],3) ?>">
-                                        <?php
-                                    }
+                                <?php
+                                #Cargar Imágen de Perfil del Administrador
+                                include 'sql_query_php/connect_bd.php';
+                                $consulta = mysqli_query($conexion, "SELECT admin_img FROM tai_admin WHERE admin_id = '" . $_SESSION['admin_id'] . "'");
+                                $row_datos = mysqli_fetch_assoc($consulta);
+                                if ($row_datos['admin_img'] == '') {
+                                ?>
+                                    <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                                <?php
+                                } else {
+                                ?>
+                                    <img class="img-profile rounded-circle" src="<?php echo substr($row_datos['admin_img'], 3) ?>">
+                                <?php
+                                }
                                 ?>
                             </a>
                             <!-- Dropdown - User Information -->
@@ -80,56 +80,47 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    
+
                     <?php
-                        $artesano_id = $_POST['artesano_id'];
-                        include 'sql_query_php/connect_bd.php';
-                        $consulta = mysqli_query($conexion, "SELECT * FROM tai_artesano WHERE artesano_id = '" . $artesano_id . "'");
-                        $row_datos = mysqli_fetch_assoc($consulta);
+                    $artesano_id = $_POST['artesano_id'];
+                    include 'sql_query_php/connect_bd.php';
+                    $consulta = mysqli_query($conexion, "SELECT * FROM tai_artesano WHERE artesano_id = '" . $artesano_id . "'");
+                    $row_datos = mysqli_fetch_assoc($consulta);
                     ?>
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Artesano: <?php echo $row_datos['artesano_nombre'], " ", $row_datos['artesano_apellidos']; ?></h1>
-                    <?php
-                        include("sql_query_php/errores.php");
-                    ?>
-                    <form action="sql_query_php/admin_update.php" method="POST" enctype="multipart/form-data">
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputEmail4">Nombre:</label>
-                                <input name="admin_nombre" type="text" class="form-control" value="<?php echo $row_datos['admin_nombre']; ?>" placeholder="Nombre del Administrador">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="inputEmail4">Apellidos:</label>
-                                <input name="admin_apellidos" type="text" class="form-control" value="<?php echo $row_datos['admin_apellidos']; ?>" placeholder="Apellidos del Administrador">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputEmail4">Correo electrónico:</label>
-                                <input name="admin_email" type="email" class="form-control is-invalid" value="<?php echo $row_datos['admin_email']; ?>" readonly>
-                                <div class="invalid-feedback">
-                                    Si necesitas cambiar tu correo <i>contacta al Administrador de Base de Datos</i>.
-                                </div>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="inputEmail4">Contraseña:</label>
-                                <input name="admin_pass" type="text" class="form-control is-invalid" value="<?php echo $row_datos['admin_pass']; ?>" readonly>
-                                <div class="invalid-feedback">
-                                Si necesitas cambiar tu contraseña <i>contacta al Administrador de Base de Datos</i>.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputEmail4">Teléfono:</label>
-                                <input minlength="10" maxlength="15" name="admin_telefono" type="tel" class="form-control" value="<?php echo $row_datos['admin_telefono']; ?>" placeholder="+52 (000) 000 0000">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="inputEmail4">Foto de Perfil:</label>
-                                <input type="file" class="form-control-file" name="admin_img">
-                            </div>
-                        </div>
+                    <p>
+                        <b>Nombre del Artesano:</b> <?php echo $row_datos['artesano_nombre'], " ", $row_datos['artesano_apellidos']; ?> <br>
+                        <b>Teléfono:</b> <?php echo $row_datos['artesano_telefono']; ?> <br>
+                        <b>Correo Electrónico:</b> <?php echo $row_datos['artesano_email']; ?> <br>
+                        <b>Domicilio:</b> <?php echo $row_datos['artesano_dir_calle'], ", Ext. ", $row_datos['artesano_dir_numext'], ", Int. ", $row_datos['artesano_dir_numint'], ", ";
+                                    $colonia = mysqli_query($conexion, "SELECT * FROM dir_colonias WHERE colonia_id = '" . $row_datos['artesano_dir_colonia'] . "'");
+                                    $row_colonia = mysqli_fetch_assoc($colonia);
+                                    echo "Col. ", $row_colonia['colonia_nombre'], ", C.P. ", $row_colonia['colonia_cp'], ", ";
+                                    $municipio = mysqli_query($conexion, "SELECT * FROM dir_municipios WHERE municipio_id = '" . $row_colonia['colonia_muni_id'] . "'");
+                                    $row_municipio = mysqli_fetch_assoc($municipio);
+                                    echo $row_municipio['municipio_nombre'], ", ";
+                                    $estado = mysqli_query($conexion, "SELECT * FROM dir_estados WHERE estado_id = '" . $row_municipio['municipio_estado_id'] . "'");
+                                    $row_estado = mysqli_fetch_assoc($estado);
+                                    echo $row_estado['estado_nombre'], ", México.";
+                                    ?> <br>
+                        <b>Referencia de Dirección:</b> <?php echo $row_datos['artesano_dir_ref']; ?>
+                    <form action="sql_query_php/admin_artesano_update.php" method="POST">
+                        <input type="hidden" name="artesano_id" value="<?php echo $artesano_id; ?>">
+                        <b>Estatus:</b>
+                        <select class="custom-select" name="artesano_estatus" required>
+                            <option value="">Selecciona el Estatus del Artesano</option>
+                            <option value="1" <?php if ($row_datos['artesano_estatus'] == '1') {
+                                                    echo 'selected';
+                                                } ?> style="color: green;" >Activo</option>
+                            <option value="2" <?php if ($row_datos['artesano_estatus'] == '2') {
+                                                    echo 'selected';
+                                                } ?> style="color: orange;" >Penalizado</option>
+                            <option value="3" <?php if ($row_datos['artesano_estatus'] == '3') {
+                                                    echo 'selected';
+                                                } ?> style="color: red;" >Inactivo</option>
+                        </select>
                         <div align="center"><br>
                             <button type="submit" class="btn btn-warning btn-icon-split">
                                 <span class="icon text-white-50">
@@ -139,6 +130,7 @@
                             </button>
                         </div>
                     </form>
+                    </p>
                 </div>
                 <!-- /.container-fluid -->
 

@@ -69,95 +69,97 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
+                
                     <!--=======================================================================================-->
                     <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Bienvenid@ <?php echo $_SESSION['artesano_nombre']; ?></h1>
-                    <p class="mb-4">Mantén tus datos actualizados para que los usuarios puedan encontrarte.</p>
+                        <!-- Page Heading -->
+                        <h1 class="h3 mb-2 text-gray-800">Mis Productos</h1>
+                        <p class="mb-4">Administra tus productos para ofrecer una mejor experiencia a tus clientes.</p>
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Información de tus productos</h6>
+                            </div>
+                            <form action="art_prod_update.php" method="POST">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <input name="producto_id" type="text" class="form-control" placeholder="ID del producto">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <button type="submit" class="btn btn-warning btn-icon-split">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-exclamation-triangle"></i>
+                                            </span>
+                                            <span class="text">Actualizar Producto</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>    
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>ID Producto</th>
+                                                <th>Producto</th>
+                                                <th>Precio</th>
+                                                <th>Código</th>
+                                                <th>Descripción</th>
+                                                <th>Inventario</th>
+                                                <th>Estatus</th>
+                                                <th>Categoría</th>
+                                                <th>Material</th>
+                                                <th>Imágen</th>
+                                            </tr>
+                                            <?php
+                                            include 'sql_query_php/connec_bd.php';
+                                            $consulta = mysqli_query($conexion, "SELECT * FROM tai_producto WHERE producto_id IN (SELECT producto_id FROM tai_producto WHERE producto_artesano_id = '" . $_SESSION['artesano_id'] . "')");
 
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Foto de perfil</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <!--incluir apartado de foto de perfil aqui-->
+                                            while ($mostrar = mysqli_fetch_array($consulta)){        
+                                            ?>
+                                        </thead>
+                                            <?php
+                                                $consulta2 = mysqli_query($conexion, "SELECT categoria_nombre FROM tai_prod_categoria WHERE categoria_id = '" . $mostrar['producto_categoria_id'] . "'");
+                                                $row_datos = mysqli_fetch_assoc($consulta2);
+                                            ?>
+                                            <?php
+                                                $consulta3 = mysqli_query($conexion, "SELECT material_nombre FROM tai_prod_materiales WHERE material_id IN (SELECT rel_mat_id FROM tai_prod_mat_rel WHERE rel_prod_id = '" . $mostrar['producto_id'] . "')");
+                                                $row_datos2 = mysqli_fetch_assoc($consulta3);
+                                            ?>
+                                            <?php
+                                                $consulta4 = mysqli_query($conexion, "SELECT img_nombre FROM tai_prod_images WHERE img_producto_id  = '" . $mostrar['producto_id'] . "'");
+                                                $row_datos3 = mysqli_fetch_assoc($consulta4);
+                                            ?>
+                                        <tbody>
+                                            <tr>
+                                                <td><?php echo $mostrar['producto_id'] ?></td>
+                                                <td><?php echo $mostrar['producto_nombre'] ?></td>
+                                                <td><?php echo $mostrar['producto_precio'] ?></td>
+                                                <td><?php echo $mostrar['producto_SKU'] ?></td>
+                                                <td><?php echo $mostrar['producto_descrip'] ?></td>
+                                                <td><?php echo $mostrar['producto_stock'] ?></td>
+                                                <td><?php if ($mostrar['producto_estatus'] == 0){
+                                                    echo "En revisión";
+                                                } else { echo "Activo"; }
+                                                ?></td>
+                                                <td><?php echo $row_datos['categoria_nombre'] ?></td>
+                                                <td><?php echo $row_datos2['material_nombre']?></td>
+                                                <td align="center">
+                                                    <div id="load_img">
+                                                        <img class="img-responsive" src="img/<?php echo $row_datos3['img_nombre'];?>" alt="Foto de producto" style="border-radius:150px;">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <?php 
+                                            }
+                                        ?>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Datos personales</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <tbody>
-                                        <tr>
-                                            <td>Nombre</td>
-                                            <td><input type="text" class="form-control form-control-user" name="artesano_nombre"
-                                            value="<?php echo $_SESSION['artesano_nombre']; ?>"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Apellidos</td>
-                                            <td><input type="text" class="form-control form-control-user" name="artesano_apellidos"
-                                            value="<?php echo $_SESSION['artesano_nombre']; ?>"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Teléfono</td>
-                                            <td><input type="text" class="form-control form-control-user" name="artesano_nombre"
-                                            value="<?php echo $_SESSION['artesano_nombre']; ?>"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Correo Electrónico</td>
-                                            <td><input type="text" class="form-control form-control-user" name="artesano_nombre"
-                                            value="<?php echo $_SESSION['artesano_nombre']; ?>"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Calle</td>
-                                            <td><input type="text" class="form-control form-control-user" name="artesano_nombre"
-                                            value="<?php echo $_SESSION['artesano_nombre']; ?>"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Numero exterior</td>
-                                            <td><input type="text" class="form-control form-control-user" name="artesano_nombre"
-                                            value="<?php echo $_SESSION['artesano_nombre']; ?>"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Numero interiro</td>
-                                            <td><input type="text" class="form-control form-control-user" name="artesano_nombre"
-                                            value="<?php echo $_SESSION['artesano_nombre']; ?>"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Colonia</td>
-                                            <td><input type="text" class="form-control form-control-user" name="artesano_nombre"
-                                            value="<?php echo $_SESSION['artesano_nombre']; ?>"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Municipio</td>
-                                            <td><input type="text" class="form-control form-control-user" name="artesano_nombre"
-                                            value="<?php echo $_SESSION['artesano_nombre']; ?>"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Estado</td>
-                                            <td><input type="text" class="form-control form-control-user" name="artesano_nombre"
-                                            value="<?php echo $_SESSION['artesano_nombre']; ?>"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Referencias</td>
-                                            <td><input type="text" class="form-control form-control-user" name="artesano_nombre"
-                                            value="<?php echo $_SESSION['artesano_nombre']; ?>"></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
 
-                </div>
+                    </div>
                     <!--========================================================================================-->
                 </div>
                 <!-- /.container-fluid -->
