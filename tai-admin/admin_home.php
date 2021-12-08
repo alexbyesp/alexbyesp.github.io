@@ -81,7 +81,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Panel de Control</h1>
+                    <h1 class="h3 mb-4 text-gray-800">Bienvenid@ Administrador: Panel de Control</h1>
 
                 </div>
                 <!-- /.container-fluid -->
