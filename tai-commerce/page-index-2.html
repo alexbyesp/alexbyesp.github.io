@@ -1,14 +1,14 @@
 <!DOCTYPE HTML>
 <html lang="en">
 
-<!-- Mirrored from bootstrap-ecommerce.com/bootstrap-ecommerce-html/page-index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Oct 2021 02:56:53 GMT -->
+<!-- Mirrored from bootstrap-ecommerce.com/bootstrap-ecommerce-html/page-index-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Oct 2021 02:56:45 GMT -->
 <head>
 <meta charset="utf-8">
 <meta http-equiv="pragma" content="no-cache" />
 <meta http-equiv="cache-control" content="max-age=604800" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>Website title - bootstrap html template</title>
+<title>TAI - Catálogo</title>
 
 <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
 
@@ -46,15 +46,36 @@ $(document).ready(function() {
 
 <header class="section-header">
 
+<nav class="navbar navbar-dark navbar-expand p-0 bg-primary">
+<div class="container">
+    <ul class="navbar-nav d-none d-md-flex mr-auto">
+		<li class="nav-item"><a class="nav-link" href="page-index-1.html">Inicio</a></li>
+		<li class="nav-item"><a class="nav-link" href="#"></a></li>
+		<li class="nav-item"><a class="nav-link" href="#"></a></li>
+    </ul>
+    <ul class="navbar-nav">
+		<li  class="nav-item"><a href="#" class="nav-link"> Teléfono : (759) 688 0707 </a></li>
+		<li class="nav-item dropdown">
+		 	<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Español</a>
+		    <ul class="dropdown-menu dropdown-menu-right" style="max-width: 100px;">
+				<li><a class="dropdown-item" href="#">English</a></li>
+				
+		    </ul>
+		</li>
+	</ul> <!-- list-inline //  -->
+  </div> <!-- navbar-collapse .// -->
+</div> <!-- container //  -->
+</nav> <!-- header-top-light.// -->
+
 <section class="header-main border-bottom">
 	<div class="container">
 <div class="row align-items-center">
-	<div class="col-lg-2 col-4">
+	<div class="col-lg-2 col-6">
 		<a href="../index-2.html" class="brand-wrap">
-			<img class="logo" src="images/logo.png">
+			<img class="logo" src="../TAI_LOGO.png">
 		</a> <!-- brand-wrap.// -->
 	</div>
-	<div class="col-lg-6 col-sm-12">
+	<div class="col-lg-6 col-12 col-sm-12">
 		<form action="#" class="search">
 			<div class="input-group w-100">
 			    <input type="text" class="form-control" placeholder="Search">
@@ -75,14 +96,13 @@ $(document).ready(function() {
 			<div class="widget-header icontext">
 				<a href="#" class="icon icon-sm rounded-circle border"><i class="fa fa-user"></i></a>
 				<div class="text">
-					<span class="text-muted">Welcome!</span>
+					<span class="text-muted">¡Bienvenido a TAI!</span>
 					<div> 
-						<a href="#">Sign in</a> |  
-						<a href="#"> Register</a>
+						 <!--<a href="page-user-login.html">Inicio de Sesión</a> |  
+						<a href="page-user-register.html"> Registro</a>-->
 					</div>
 				</div>
 			</div>
-
 		</div> <!-- widgets-wrap.// -->
 	</div> <!-- col.// -->
 </div> <!-- row.// -->
@@ -93,7 +113,6 @@ $(document).ready(function() {
 
 <nav class="navbar navbar-main navbar-expand-lg navbar-light border-bottom">
   <div class="container">
-
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav" aria-controls="main_nav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -101,40 +120,32 @@ $(document).ready(function() {
     <div class="collapse navbar-collapse" id="main_nav">
       <ul class="navbar-nav">
       	<li class="nav-item dropdown">
-           <a class="nav-link" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Supermarket</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Partnership</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Baby &amp Toys</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Fitness sport</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Clothing</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Furnitures</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"> More</a>
+          <a class="nav-link pl-0" data-toggle="dropdown" href="#"><strong> <i class="fa fa-bars"></i> &nbsp  Todas las categorias</strong></a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Foods and Drink</a>
-            <a class="dropdown-item" href="#">Home interior</a>
+           
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Category 1</a>
-            <a class="dropdown-item" href="#">Category 2</a>
-            <a class="dropdown-item" href="#">Category 3</a>
+            <a class="dropdown-item" href="page-listing-grid.html">Aretes</a>
+            <a class="dropdown-item" href="#">Diademas</a>
+            <a class="dropdown-item" href="#">Bolsas</a>
+			<a class="dropdown-item" href="#">Gorras</a>
           </div>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="page-listing-grid.html">Aretes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Gorras</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Bolsas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Canastas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Diademas</a>
+        </li>
+       
       </ul>
     </div> <!-- collapse .// -->
   </div> <!-- container .// -->
@@ -142,77 +153,302 @@ $(document).ready(function() {
 
 </header> <!-- section-header.// -->
 
+<!-- ========================= SECTION INTRO ========================= -->
+<section class="section-intro padding-y-sm">
+	<div class="container">
+	
+	<div class="intro-banner-wrap">
+		<img src="../banner2.png" class="img-fluid rounded">
+	</div>
+	
+	</div> <!-- container //  -->
+	</section>
+	<!-- ========================= SECTION INTRO END// ========================= -->
 
-<!-- ========================= SECTION MAIN ========================= -->
-<section class="section-main bg padding-y">
+
+
+
+<!-- ========================= SECTION FEATURE ========================= -->
+<section class="section-content padding-y-sm">
 <div class="container">
+<article class="card card-body">
+
 
 <div class="row">
-	<aside class="col-md-3">
-		<nav class="card">
-			<ul class="menu-category">
-				<li><a href="#">Best clothes</a></li>
-				<li><a href="#">Automobiles</a></li>
-				<li><a href="#">Home interior</a></li>
-				<li><a href="#">Electronics</a></li>
-				<li><a href="#">Technologies</a></li>
-				<li><a href="#">Digital goods</a></li>
-				<li class="has-submenu"><a href="#">More items</a>
-					<ul class="submenu">
-						<li><a href="#">Submenu name</a></li>
-						<li><a href="#">Great submenu</a></li>
-						<li><a href="#">Another menu</a></li>
-						<li><a href="#">Some others</a></li>
-					</ul>
-				</li>
-			</ul>
-		</nav>
-	</aside> <!-- col.// -->
-	<div class="col-md-9">
-		<article class="banner-wrap">
-			<img src="images/banners/2.jpg" class="w-100 rounded">
-		</article>
-	</div> <!-- col.// -->
-</div> <!-- row.// -->
-</div> <!-- container //  -->
-</section>
-<!-- ========================= SECTION MAIN END// ========================= -->
+	<div class="col-md-4">	
+		<figure class="item-feature">
+			<span class="text-primary"><i class="fa fa-2x fa-truck"></i></span>
+			<figcaption class="pt-3">
+				<h5 class="title">Entrega Rápida</h5>
+				<p>Nuestros productos se encuentran disponibles para su venta de forma inmediatea</p>
+			</figcaption>
+		</figure> <!-- iconbox // -->
+	</div><!-- col // -->
+	<div class="col-md-4">
+		<figure  class="item-feature">
+			<span class="text-primary"><i class="fa fa-2x fa-landmark"></i></span>	
+			<figcaption class="pt-3">
+				<h5 class="title">Productos de la región</h5>
+				<p>Todos nuestros productos son hechos por artesanos de la región.
+				 </p>
+			</figcaption>
+		</figure> <!-- iconbox // -->
+	</div><!-- col // -->
+    <div class="col-md-4">
+		<figure  class="item-feature">
+			<span class="text-primary"><i class="fa fa-2x fa-lock"></i></span>
+			<figcaption class="pt-3">
+				<h5 class="title">Compra Segura </h5>
+				<p>Nuestros productos son de calidad, no dudaras del producto.
+				 </p>
+			</figcaption>
+		</figure> <!-- iconbox // -->
+	</div> <!-- col // -->
+</div>
+</article>
 
-<!-- ========================= SECTION  ========================= -->
-<section class="section-name padding-y-sm">
+</div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION FEATURE END// ========================= -->
+
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content">
 <div class="container">
 
 <header class="section-heading">
-	<a href="#" class="btn btn-outline-primary float-right">See all</a>
-	<h3 class="section-title">Popular products</h3>
+	<h3 class="section-title">Lo más vendido</h3>
 </header><!-- sect-heading -->
 
 	
 <div class="row">
 	<div class="col-md-3">
 		<div href="#" class="card card-product-grid">
-			<a href="#" class="img-wrap"> <img src="images/items/1.jpg"> </a>
+			<a href="#" class="img-wrap"> <img src="../tai-commerce/im-pro/1.jpg"> </a>
 			<figcaption class="info-wrap">
-				<a href="#" class="title">Just another product name</a>
-				<div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
+				<a href="#" class="title">Muñeca de listones Beautiful</a>
+				
+				<div class="rating-wrap">
+					<ul class="rating-stars">
+						<li style="width:80%" class="stars-active"> 
+							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+						</li>
+						<li>
+							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 
+						</li>
+					</ul>
+					<span class="label-rating text-muted"> 23 opiniones</span>
+				</div>
+				<div class="price mt-1">$250.00</div> <!-- price-wrap.// -->
 			</figcaption>
 		</div>
 	</div> <!-- col.// -->
 	<div class="col-md-3">
 		<div href="#" class="card card-product-grid">
-			<a href="#" class="img-wrap"> <img src="images/items/2.jpg"> </a>
+			<a href="#" class="img-wrap"> <img src="../tai-commerce/im-pro/2.jpg"> </a>
 			<figcaption class="info-wrap">
-				<a href="#" class="title">Some item name here</a>
+				<a href="#" class="title">Blusa bordada a mano, Flores</a>
+				
+				<div class="rating-wrap">
+					<ul class="rating-stars">
+						<li style="width:80%" class="stars-active"> 
+							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+						</li>
+						<li>
+							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 
+						</li>
+					</ul>
+					<span class="label-rating text-muted"> 16 opiniones</span>
+				</div>
+				<div class="price mt-1">$1000.00</div> <!-- price-wrap.// -->
+			</figcaption>
+		</div>
+	</div> <!-- col.// -->
+	<div class="col-md-3">
+		<div href="#" class="card card-product-grid">
+			<a href="#" class="img-wrap"> <img src="../tai-commerce/im-pro/3.webp"> </a>
+			<figcaption class="info-wrap">
+				<a href="#" class="title">Blusa artesanal</a>
+				
+				<div class="rating-wrap">
+					<ul class="rating-stars">
+						<li style="width:80%" class="stars-active"> 
+							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+						</li>
+						<li>
+							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 
+						</li>
+					</ul>
+					<span class="label-rating text-muted"> 32 opiniones</span>
+				</div>
+				<div class="price mt-1">$300.00</div> <!-- price-wrap.// -->
+			</figcaption>
+		</div>
+	</div> <!-- col.// -->
+	<div class="col-md-3">
+		<div href="#" class="card card-product-grid">
+			<a href="#" class="img-wrap"> <img src="../tai-commerce/im-pro/4.jpeg"> </a>
+			<figcaption class="info-wrap">
+				<a href="#" class="title">Bolsa de Tejido</a>
+				
+				<div class="rating-wrap">
+					<ul class="rating-stars">
+						<li style="width:80%" class="stars-active"> 
+							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+						</li>
+						<li>
+							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 
+						</li>
+					</ul>
+					<span class="label-rating text-muted"> 10 opiniones</span>
+				</div>
+				<div class="price mt-1">$399.00</div> <!-- price-wrap.// -->
+			</figcaption>
+		</div>
+	</div> <!-- col.// -->
+</div> <!-- row.// -->
+
+</div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content">
+<div class="container">
+
+<header class="section-heading">
+	<h3 class="section-title"></h3>
+</header><!-- sect-heading -->
+
+<div class="row">
+	<div class="col-md-3">
+		<div href="#" class="card card-product-grid">
+			<a href="#" class="img-wrap"> <img src="../tai-commerce/im-pro/5.jpg"> </a>
+			<figcaption class="info-wrap">
+				<a href="#" class="title">Tapete Tejido de colores</a>
+				
+				<div class="rating-wrap">
+					<ul class="rating-stars">
+						<li style="width:80%" class="stars-active"> 
+							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+						</li>
+						<li>
+							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 
+						</li>
+					</ul>
+					<span class="label-rating text-muted"> 30 opiniones</span>
+				</div>
+				<div class="price mt-1">$1099.00</div> <!-- price-wrap.// -->
+			</figcaption>
+		</div>
+	</div> <!-- col.// -->
+	<div class="col-md-3">
+		<div href="#" class="card card-product-grid">
+			<a href="#" class="img-wrap"> <img src="../tai-commerce/im-pro/6.jpg"> </a>
+			<figcaption class="info-wrap">
+				<a href="#" class="title">Platos de porcelana</a>
+				
+				<div class="rating-wrap">
+					<ul class="rating-stars">
+						<li style="width:80%" class="stars-active"> 
+							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+						</li>
+						<li>
+							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 
+						</li>
+					</ul>
+					<span class="label-rating text-muted"> 20 opiniones</span>
+				</div>
 				<div class="price mt-1">$280.00</div> <!-- price-wrap.// -->
 			</figcaption>
 		</div>
 	</div> <!-- col.// -->
 	<div class="col-md-3">
 		<div href="#" class="card card-product-grid">
-			<a href="#" class="img-wrap"> <img src="images/items/3.jpg"> </a>
+			<a href="#" class="img-wrap"> <img src="../tai-commerce/im-pro/7.jpg"> </a>
 			<figcaption class="info-wrap">
-				<a href="#" class="title">Great product name here</a>
-				<div class="price mt-1">$56.00</div> <!-- price-wrap.// -->
+				<a href="#" class="title">Aretes de Flor</a>
+				
+				<div class="rating-wrap">
+					<ul class="rating-stars">
+						<li style="width:80%" class="stars-active"> 
+							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+						</li>
+						<li>
+							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 
+						</li>
+					</ul>
+					<span class="label-rating text-muted"> 25 opiniones</span>
+				</div>
+				<div class="price mt-1">$136.00</div> <!-- price-wrap.// -->
+			</figcaption>
+		</div>
+	</div> <!-- col.// -->
+	<div class="col-md-3">
+		<div href="#" class="card card-product-grid">
+			<a href="#" class="img-wrap"> <img src="../tai-commerce/im-pro/8.jpg"> </a>
+			<figcaption class="info-wrap">
+				<a href="#" class="title">Arete de mandala</a>
+				
+				<div class="rating-wrap">
+					<ul class="rating-stars">
+						<li style="width:80%" class="stars-active"> 
+							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+						</li>
+						<li>
+							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 
+						</li>
+					</ul>
+					<span class="label-rating text-muted"> 10 opiniones</span>
+				</div>
+				<div class="price mt-1">$130.00</div> <!-- price-wrap.// -->
+			</figcaption>
+		</div>
+	</div> <!-- col.// -->
+</div> <!-- row.// -->
+
+</div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-bottom-sm">
+<div class="container">
+
+<header class="section-heading">
+	<a href="#" class="btn btn-outline-primary float-right">Ver más</a>
+	<h3 class="section-title">Recomendado</h3>
+</header><!-- sect-heading -->
+
+<div class="row">
+	<div class="col-md-3">
+		<div href="#" class="card card-product-grid">
+			<a href="#" class="img-wrap"> <img src="../tai-commerce/im-pro/9.jpg"> </a>
+			<figcaption class="info-wrap">
+				<a href="#" class="title">Aretes artesanales de muñeca tradicional mexicana</a>
+				<div class="price mt-1">$200.00</div> <!-- price-wrap.// -->
+			</figcaption>
+		</div>
+	</div> <!-- col.// -->
+	<div class="col-md-3">
+		<div href="#" class="card card-product-grid">
+			<a href="#" class="img-wrap"> <img src="../tai-commerce/im-pro/10.jpg"> </a>
+			<figcaption class="info-wrap">
+				<a href="#" class="title">Camisa bordada-Algodon</a>
+				<div class="price mt-1">$800.00</div> <!-- price-wrap.// -->
+			</figcaption>
+		</div>
+	</div> <!-- col.// -->
+	<div class="col-md-3">
+		<div href="#" class="card card-product-grid">
+			<a href="#" class="img-wrap"> <img src="../tai-commerce/im-pro/11.webp"> </a>
+			<figcaption class="info-wrap">
+				<a href="#" class="title">Canastas Palma 20cm, 6 Pz</a>
+				<div class="price mt-1">$150.00</div> <!-- price-wrap.// -->
 			</figcaption>
 		</div>
 	</div> <!-- col.// -->
@@ -220,137 +456,27 @@ $(document).ready(function() {
 		<div href="#" class="card card-product-grid">
 			<a href="#" class="img-wrap"> <img src="images/items/4.jpg"> </a>
 			<figcaption class="info-wrap">
-				<a href="#" class="title">Just another product name</a>
-				<div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-md-3">
-		<div href="#" class="card card-product-grid">
-			<a href="#" class="img-wrap"> <img src="images/items/5.jpg"> </a>
-			<figcaption class="info-wrap">
-				<a href="#" class="title">Just another product name</a>
-				<div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-md-3">
-		<div href="#" class="card card-product-grid">
-			<a href="#" class="img-wrap"> <img src="images/items/6.jpg"> </a>
-			<figcaption class="info-wrap">
-				<a href="#" class="title">Some item name here</a>
-				<div class="price mt-1">$280.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-md-3">
-		<div href="#" class="card card-product-grid">
-			<a href="#" class="img-wrap"> <img src="images/items/7.jpg"> </a>
-			<figcaption class="info-wrap">
-				<a href="#" class="title">Great product name here</a>
-				<div class="price mt-1">$56.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-md-3">
-		<div href="#" class="card card-product-grid">
-			<a href="#" class="img-wrap"> <img src="images/items/9.jpg"> </a>
-			<figcaption class="info-wrap">
-				<a href="#" class="title">Just another product name</a>
-				<div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
+				<a href="#" class="title">Canastos de mano</a>
+				<div class="price mt-1">$359.00</div> <!-- price-wrap.// -->
 			</figcaption>
 		</div>
 	</div> <!-- col.// -->
 </div> <!-- row.// -->
 
-</div><!-- container // -->
+</div> <!-- container .//  -->
 </section>
-<!-- ========================= SECTION  END// ========================= -->
+<hr>
+<hr>
+<!-- ========================= SECTION CONTENT END// ========================= -->
 
-
-<!-- ========================= SECTION  ========================= -->
-<section class="section-name padding-y bg">
-<div class="container">
-
-<div class="row">
-<div class="col-md-6">
-	<h3>Download app demo text</h3>
-	<p>Get an amazing app  to make Your life easy</p>
-</div>
-<div class="col-md-6 text-md-right">
-	<a href="#"><img src="images/misc/appstore.png" height="40"></a>
-	<a href="#"><img src="images/misc/appstore.png" height="40"></a>
-</div>
-</div> <!-- row.// -->
-</div><!-- container // -->
-</section>
-<!-- ========================= SECTION  END// ======================= -->
-
-
-
-<!-- ========================= FOOTER ========================= -->
-<footer class="section-footer border-top">
-	<div class="container">
-		<section class="footer-top padding-y">
-			<div class="row">
-				<aside class="col-md col-6">
-					<h6 class="title">Brands</h6>
-					<ul class="list-unstyled">
-						<li> <a href="#">Adidas</a></li>
-						<li> <a href="#">Puma</a></li>
-						<li> <a href="#">Reebok</a></li>
-						<li> <a href="#">Nike</a></li>
-					</ul>
-				</aside>
-				<aside class="col-md col-6">
-					<h6 class="title">Company</h6>
-					<ul class="list-unstyled">
-						<li> <a href="#">About us</a></li>
-						<li> <a href="#">Career</a></li>
-						<li> <a href="#">Find a store</a></li>
-						<li> <a href="#">Rules and terms</a></li>
-						<li> <a href="#">Sitemap</a></li>
-					</ul>
-				</aside>
-				<aside class="col-md col-6">
-					<h6 class="title">Help</h6>
-					<ul class="list-unstyled">
-						<li> <a href="#">Contact us</a></li>
-						<li> <a href="#">Money refund</a></li>
-						<li> <a href="#">Order status</a></li>
-						<li> <a href="#">Shipping info</a></li>
-						<li> <a href="#">Open dispute</a></li>
-					</ul>
-				</aside>
-				<aside class="col-md col-6">
-					<h6 class="title">Account</h6>
-					<ul class="list-unstyled">
-						<li> <a href="#"> User Login </a></li>
-						<li> <a href="#"> User register </a></li>
-						<li> <a href="#"> Account Setting </a></li>
-						<li> <a href="#"> My Orders </a></li>
-					</ul>
-				</aside>
-				<aside class="col-md">
-					<h6 class="title">Social</h6>
-					<ul class="list-unstyled">
-						<li><a href="#"> <i class="fab fa-facebook"></i> Facebook </a></li>
-						<li><a href="#"> <i class="fab fa-twitter"></i> Twitter </a></li>
-						<li><a href="#"> <i class="fab fa-instagram"></i> Instagram </a></li>
-						<li><a href="#"> <i class="fab fa-youtube"></i> Youtube </a></li>
-					</ul>
-				</aside>
-			</div> <!-- row.// -->
-		</section>	<!-- footer-top.// -->
-
-		<section class="footer-bottom border-top row">
+		<section class="footer-bottom row">
 			<div class="col-md-2">
-				<p class="text-muted"> &copy 2019 Company name </p>
+				<p class="text-muted"> &copy 2021 TAI </p>
 			</div>
 			<div class="col-md-8 text-md-center">
-				<span  class="px-2">info@pixsellz.io</span>
-				<span  class="px-2">+879-332-9375</span>
-				<span  class="px-2">Street name 123, Avanue abc</span>
+				<span  class="px-2">tai@</span>gmail.com
+				<span  class="px-2">(759) 6880 707</span>
+				<span  class="px-2">Calle Bugambilias, Ixmiquilpan Hgo.</span>
 			</div>
 			<div class="col-md-2 text-md-right text-muted">
 				<i class="fab fa-lg fa-cc-visa"></i>
@@ -362,7 +488,8 @@ $(document).ready(function() {
 </footer>
 <!-- ========================= FOOTER END // ========================= -->
 
+
 </body>
 
-<!-- Mirrored from bootstrap-ecommerce.com/bootstrap-ecommerce-html/page-index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Oct 2021 02:56:53 GMT -->
+<!-- Mirrored from bootstrap-ecommerce.com/bootstrap-ecommerce-html/page-index-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Oct 2021 02:56:53 GMT -->
 </html>

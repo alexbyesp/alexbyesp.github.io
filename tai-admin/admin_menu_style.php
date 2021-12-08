@@ -71,8 +71,8 @@ session_start();
                 </a>
                 <div id="collapsecategorias" class="collapse" aria-labelledby="headingcategorias" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="utilities-color.html">Tabla de Categorías</a>
-                        <a class="collapse-item" href="utilities-border.html">Registrar Categoría</a>
+                        <a class="collapse-item" href="admin_table_prod_cat.php">Tabla de Categorías</a>
+                        <a class="collapse-item" href="admin_categoria_agregar.php">Registrar Categoría</a>
                     </div>
                 </div>
             </li>
@@ -85,8 +85,8 @@ session_start();
                 </a>
                 <div id="collapseMateriales" class="collapse" aria-labelledby="headingMateriales" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="utilities-color.html">Tabla de Materiales</a>
-                        <a class="collapse-item" href="utilities-border.html">Registrar Material</a>
+                        <a class="collapse-item" href="admin_table_prod_mat.php">Tabla de Materiales</a>
+                        <a class="collapse-item" href="admin_material_agregar.php">Registrar Material</a>
                     </div>
                 </div>
             </li>

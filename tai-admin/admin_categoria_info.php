@@ -3,7 +3,7 @@
 
 <head>
     <link rel="icon" type="image/png" href="img/resources/ICONO-TAI.png">
-    <title>Panel de Control: Mi Perfil</title>
+    <title>Panel de Control: Editar Categoría</title>
 </head>
 
 <body id="page-top">
@@ -80,52 +80,25 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Mi Perfil</h1>
-                    <p class="mb-4">Configura tu Perfil a tu manera...</p>
                     <?php
-                        include("sql_query_php/errores.php");
-                    ?>
-                    <?php
+                    $categoria_id = $_POST['categoria_id'];
                     include 'sql_query_php/connect_bd.php';
-                    $consulta = mysqli_query($conexion, "SELECT * FROM tai_admin WHERE admin_id = '" . $_SESSION['admin_id'] . "'");
+                    $consulta = mysqli_query($conexion, "SELECT * FROM tai_prod_categoria WHERE categoria_id = '" . $categoria_id . "'");
                     $row_datos = mysqli_fetch_assoc($consulta);
                     ?>
-                    <form action="sql_query_php/admin_update.php" method="POST" enctype="multipart/form-data">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-4 text-gray-800">Categoría: <?php echo $row_datos['categoria_nombre']; ?></h1>
+                    <form action="sql_query_php/admin_categoria_update.php" method="POST">
+                        <input type="hidden" name="categoria_id" value="<?php echo $row_datos['categoria_id']; ?>">
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputEmail4">Nombre:</label>
-                                <input name="admin_nombre" type="text" class="form-control" value="<?php echo $row_datos['admin_nombre']; ?>" placeholder="Nombre del Administrador" required maxlength="50">
+                                <input name="categoria_nombre" type="text" class="form-control" value="<?php echo $row_datos['categoria_nombre']; ?>" placeholder="Nombre de la Categoría" required maxlength="20">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="inputEmail4">Apellidos:</label>
-                                <input name="admin_apellidos" type="text" class="form-control" value="<?php echo $row_datos['admin_apellidos']; ?>" placeholder="Apellidos del Administrador" required maxlength="50">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputEmail4">Correo electrónico:</label>
-                                <input name="admin_email" type="email" class="form-control is-invalid" value="<?php echo $row_datos['admin_email']; ?>" readonly>
-                                <div class="invalid-feedback">
-                                    Si necesitas cambiar tu correo <i>contacta al Administrador de Base de Datos</i>.
-                                </div>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="inputEmail4">Contraseña:</label>
-                                <input name="admin_pass" type="text" class="form-control is-invalid" value="<?php echo $row_datos['admin_pass']; ?>" readonly>
-                                <div class="invalid-feedback">
-                                Si necesitas cambiar tu contraseña <i>contacta al Administrador de Base de Datos</i>.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputEmail4">Teléfono:</label>
-                                <input minlength="10" maxlength="15" name="admin_telefono" type="tel" class="form-control" value="<?php echo $row_datos['admin_telefono']; ?>" placeholder="+52 (000) 000 0000" required>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="inputEmail4">Foto de Perfil:</label>
-                                <input type="file" class="form-control-file" name="admin_img">
+                                <label for="inputEmail4">Descripción:</label>
+                                <textarea name="categoria_desc" class="form-control" rows="5" placeholder="Descripción" required maxlength="255"><?php echo $row_datos['categoria_desc']; ?></textarea>
                             </div>
                         </div>
                         <div align="center"><br>
@@ -133,7 +106,7 @@
                                 <span class="icon text-white-50">
                                     <i class="fas fa-exclamation-triangle"></i>
                                 </span>
-                                <span class="text">Actualizar Datos</span>
+                                <span class="text">Actualizar Categoría</span>
                             </button>
                         </div>
                     </form>

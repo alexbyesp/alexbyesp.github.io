@@ -126,7 +126,7 @@
                                 <span class="icon text-white-50">
                                     <i class="fas fa-exclamation-triangle"></i>
                                 </span>
-                                <span class="text">Actualizar Datos</span>
+                                <span class="text">Actualizar Perfil</span>
                             </button>
                         </div>
                     </form>
